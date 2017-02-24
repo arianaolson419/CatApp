@@ -8,6 +8,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+
+var uri = 'mongodb://heroku_sd9rsknb:1uc6ltn7ukhb3qg0eabmcm3db8@ds161109.mlab.com:61109/heroku_sd9rsknb';
+
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
@@ -17,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect('mongodb://localhost/cats');
+mongoose.connect(uri);
 
 app.get('/', index.home);
 app.get('/cats/new', index.new);
